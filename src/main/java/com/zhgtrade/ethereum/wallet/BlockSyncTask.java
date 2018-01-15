@@ -346,7 +346,7 @@ public class BlockSyncTask implements Runnable {
 
     public void sync() {
         try {
-            CountDownLatch latch = new CountDownLatch(2);
+            CountDownLatch latch = new CountDownLatch(1);
             executorService.submit(() -> {
                 try {
                     this.syncEther();
@@ -355,14 +355,14 @@ public class BlockSyncTask implements Runnable {
                 }
                 latch.countDown();
             });
-            executorService.submit(() -> {
-                try {
-                    this.syncToken();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                latch.countDown();
-            });
+//            executorService.submit(() -> {
+//                try {
+//                    this.syncToken();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                latch.countDown();
+//            });
             latch.await();
             log.info("sync orver");
         } catch (Exception e) {

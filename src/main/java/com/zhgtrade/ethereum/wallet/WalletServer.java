@@ -64,7 +64,7 @@ public class WalletServer {
         System.out.println("Start Time " + new Date());
 
         startSyncTask();
-        startRequestTask();
+//        startRequestTask();
         server.join();
 
     }
